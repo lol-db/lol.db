@@ -21,13 +21,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thewidev/test.git"
+    "url": "git+https://github.com/thewidev/lol.db.git"
   },
   "author": "widev",
   "bugs": {
-    "url": "https://github.com/thewidev/test/issues"
+    "url": "https://github.com/thewidev/lol.db/issues"
   },
-  "homepage": "https://github.com/thewidev/test#readme",
+  "homepage": "https://github.com/thewidev/lol.db#readme",
   "license": "ISC",
   "devDependencies": {
     "node": "^16.13.2"
