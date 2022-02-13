@@ -1,0 +1,38 @@
+{
+  "name": "lol.db",
+  "version": "1.3.0",
+  "description": "Something",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Passed\""
+  },
+  "keywords": [
+    "database",
+    "lol",
+    "lol.db",
+    "db",
+    "json",
+    "json db",
+    "json database",
+    "easy to use"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thewidev/test.git"
+  },
+  "author": "widev",
+  "bugs": {
+    "url": "https://github.com/thewidev/test/issues"
+  },
+  "homepage": "https://github.com/thewidev/test#readme",
+  "license": "ISC",
+  "devDependencies": {
+    "node": "^16.13.2"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
+}
