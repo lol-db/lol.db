@@ -158,9 +158,6 @@ module.exports = function(path, options) {
       }
       fs.writeFileSync(path, JSON.stringify(d), 'utf8')
     },
-    clear() {
-      fs.writeFileSync(path, '{}', 'utf8')
-    },
     delete(key) {
       if(!fs.existsSync(path)) fs.writeFileSync(path, JSON.stringify({}), 'utf8');
       if(!key && options.disableWarnMessage !== true) return console.warn(chalk.hex('#ffbf00').bold("[lol.db] ") + "Please make sure you use the right syntax for the " + chalk.hex('#eb8f34').bold("delete") + " function, per example: \n" + chalk.hex('#4287f5').bold('<db>.delete(\'mykey\')\n'));
@@ -171,6 +168,24 @@ module.exports = function(path, options) {
         delete d[key]
       }
       fs.writeFileSync(path, JSON.stringify(d), 'utf8')
+    },
+    clear() {
+      fs.writeFileSync(path, '{}', 'utf8')
+    },
+    size(beautify) {
+      if(!fs.existsSync(path)) fs.writeFileSync(path, JSON.stringify({}), 'utf8');
+      if(!beautify || beautify !== true) {
+        return fs.statSync(path).size
+      } else {
+        let b = fs.statSync(path).size
+        let d = 2
+        if (b === 0) return '0 Bytes';
+        let k = 1024;
+        let dm = d < 0 ? 0 : d;
+        let sizes = ['Bytes', 'Kilobytes', 'Megabytes', 'Gigabytes', 'Terabytes', 'Petabytes', 'Exabytes', 'Zettabytes', 'Yottabytes'];
+        let i = Math.floor(Math.log(b) / Math.log(k));
+        return parseFloat((b / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+      }
     }
   }
 }
