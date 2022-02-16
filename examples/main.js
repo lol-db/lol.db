@@ -4,3 +4,5 @@ console.log(db.get('a')) // returns 69
 
 db.set('a') // invalid syntax
 console.log(db.size(true))
+
+console.log(db.keys())

@@ -186,6 +186,34 @@ module.exports = function(path, options) {
         let i = Math.floor(Math.log(b) / Math.log(k));
         return parseFloat((b / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
       }
+    },
+    keys() {
+      if(!fs.existsSync(path)) fs.writeFileSync(path, JSON.stringify({}), 'utf8');
+      let ks = Object.keys(d);
+      return ks.length
+    },
+    setAll(data) {
+      if(!fs.existsSync(path)) fs.writeFileSync(path, JSON.stringify({}), 'utf8');
+      let s = '\n'
+      if(typeof data !== 'object' || Array.isArray(data)) s = '\n' + chalk.hex('#ff2600').bold('Also make sure the data is a JSON object!');
+      if(!data && options.disableWarnMessage !== true || typeof data !== 'object' && options.disableWarnMessage !== true || Array.isArray(data) && options.disableWarnMessage !== true) {
+        console.warn(chalk.hex('#ffbf00').bold("[lol.db] ") + "Please make sure you use the right syntax for the " + chalk.hex('#eb8f34').bold("setAll") + " function, per example: \n" + chalk.hex('#4287f5').bold('<db>.setAll({ data })\n') + s);
+      } else if(!data && options.disableWarnMessage === true  || typeof data !== 'object' && options.disableWarnMessage === true || Array.isArray(data) && options.disableWarnMessage === true) {
+        return null;
+      } else {
+        d = data;
+        fs.writeFileSync(path, JSON.stringify(d), 'utf8')
+        return JSON.stringify(d);
+      }
+    },
+    raw: {
+      data: d,
+      d: d,
+      assign: assign,
+      deletePath: deleteObjPath,
+      path: path,
+      size: fs.statSync(path).size,
+      exists: fs.existsSync(path)
     }
   }
 }
